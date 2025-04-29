@@ -1,0 +1,53 @@
+<!--
+I acknowledge the following statements:
+
+1. That the code I provide below is my own work and NOT copied from any outside resource, which includes, but not limited to, an artificial intelligence program unless given explicit permission by the instructor.
+
+2. That the code I provide below is my own work and NOT the work of my peers, tutors, or any other individual unless given explicit permission by the instructor.
+
+3. That if the code below is in violation of statements 1 and 2 above, I may be reported to the Academic Integrity office and subject to penalties as described in the Academic Integrity Policy.
+
+Your Name: Pappu Jha
+Your Student ID: w10168315
+-->
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:Project.Models"
+             x:Class="RestaurantAppFullImp.Project.Views.MenuDashboardPage"
+             Title="Menu Dashboard">
+
+    <StackLayout Padding="10" Spacing="10">
+        
+        <Label Text="Menu Dashboard" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+        <Entry x:Name="SearchEntry" Placeholder="Search by name..." TextChanged="SearchEntry_TextChanged"/>
+
+        <Picker x:Name="TypePicker" Title="Filter by Type" SelectedIndexChanged="TypePicker_SelectedIndexChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>All</x:String>
+                    <x:String>Entree</x:String>
+                    <x:String>Side</x:String>
+                    <x:String>Drink</x:String>
+                    <x:String>Dessert</x:String>
+                    <x:String>Appetizer</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <ListView x:Name="MenuListView" ItemSelected="MenuListView_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding ItemName}" Detail="{Binding ItemPrice, StringFormat='Price: {0:C}'}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button Text="Add" Clicked="OnAddClicked" />
+            <Button Text="Edit" Clicked="OnEditClicked" />
+            <Button Text="Delete" Clicked="OnDeleteClicked" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
